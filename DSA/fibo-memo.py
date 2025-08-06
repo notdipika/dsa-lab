@@ -8,7 +8,6 @@ def fibonacci_memo(n, memo={}):
     memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
     return memo[n]
 
-# Input
 n = int(input("Enter the value of n: "))
 
 start = time.time()
