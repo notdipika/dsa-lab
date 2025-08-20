@@ -3,58 +3,58 @@
 #include<time.h>
 #define MAX 200000
 
-void selection_sort(int a[], int n)
-{
-    int i, j, temp, least, pos;
-    for (i = 0; i < n; i++)
-    {
-        least = a[i];
-        pos = i;
-        for(j = i + 1; j < n; j++)
-        {
-            if(a[j]<least)
-            {
-                least = a[j];
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void selection_sort(int a[], int n){
+    for(int i=0; i<n; i++){
+        int smallest = a[i];
+        int pos = i;
+        for(int j=i+1; j<n; j++){
+            if(a[j] < smallest){
+                smallest = a[j];
                 pos = j;
             }
         }
-        if (i != pos)
-        {
-            temp = a[i];
-            a[i] = a[pos];
-            a[pos]=temp;
+        if(i!=pos){
+            swap(&a[i], &a[pos]);
         }
     }
 }
 
-void display(int a[], int n)
-{
+
+void display(int arr[], int n){
     int i;
-    for(i = 0; i < n; i++)
-    {
-        printf("%d", a[i]);
+    for(i=0; i<n; i++){
+        printf("%d\t", arr[i]);
     }
     printf("\n");
 }
 
-int main()
-{
+int main(){
     int i, a[MAX], n;
+
     srand(time(NULL));
     time_t t1, t2;
     double d;
-    printf("Enter n:");
+
+    printf("Enter n: ");
     scanf("%d", &n);
-    for(i = 0; i < n; i++)
-    {
-        a[i] = rand()%100;
+    for(i=0; i<n; i++){
+        a[i] = rand()%1000;
     }
-    display(a,n);
-    t1= time(NULL);
-    selection_sort(a,n);
-    t2= time(NULL);
-    display(a,n);
-    d = difftime(t2,t1);
-    printf("The time is %lf seconds.", d);
+    display(a, n);
+    t1 = time(NULL);
+    selection_sort(a, n);
+    t2 = time(NULL);
+    display(a, n);
+
+    d = difftime(t2, t1);
+
+    printf("Total time taken: %lf seconds.\n", d);
+
     return 0;
 }
